@@ -1,4 +1,4 @@
-#–– Run this as Administrator ––
+#â€“â€“ Run this as Administrator â€“â€“
 Set-ExecutionPolicy Bypass -Scope Process -Force
 
 # Destination folder and log file
