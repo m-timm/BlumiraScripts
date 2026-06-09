@@ -116,7 +116,7 @@ prompt TENANT_NAME   "Display name for logs (press enter to take default)"   "$S
 prompt CSE_CC        "CSE Command Center URL (press enter to take default)"  "https://net.banyanops.com"
 prompt_secret CSE_KEY "CSE API Key Secret (hidden)"
 prompt BLUM_URL      "Blumira ingestion service URL"
-prompt_secret BLUM_TOKEN "Blumira token (hidden)"
+prompt_secret BLUM_TOKEN "Blumira token (JUST THE RAW TOKEN - after 'Blumira ' - hidden)"
 prompt POLL_INT      "Poll interval seconds (press enter to take default)"   "60"
 
 [ -n "$CSE_KEY" ]    || { err "CSE API key is required."; exit 1; }
