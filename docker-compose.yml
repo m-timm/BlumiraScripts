@@ -1,0 +1,30 @@
+services:
+  cse-blumira-relay:
+    build: .
+    image: cse-blumira-relay:latest
+    container_name: cse-blumira-relay
+    restart: unless-stopped
+    volumes:
+      # Config holds secrets -> mount read-only. chmod 600 on the host file.
+      - ./config.yaml:/config/config.yaml:ro
+      # Persistent cursor / dedupe state.
+      - relay-state:/data
+    environment:
+      RELAY_LOG_LEVEL: INFO
+    # Heartbeat is rewritten every cycle; flag the container unhealthy if the
+    # loop wedges. Give it a window comfortably larger than poll_interval.
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import os,time,sys; f='/data/heartbeat'; sys.exit(0 if os.path.exists(f) and time.time()-os.path.getmtime(f) < 600 else 1)"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  relay-state:

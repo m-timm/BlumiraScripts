@@ -1,0 +1,27 @@
+# CSE -> Blumira relay config. Copy to config.yaml, chmod 600.
+# Pull all events, flatten them to clean top-level fields, ship to Blumira.
+
+poll_interval_seconds: 60   # CSE keeps a rolling window; poll often so the
+                            # per-poll event count stays small.
+
+# Optional behavior (defaults shown):
+flatten: true       # flatten nested CSE events to top-level keys (source IP,
+                    # user_email, action, geo, etc.) and keep original under "raw".
+                    # Set false to ship raw nested JSON instead.
+drop_debug: false   # set true to skip DEBUG-severity events (the IDP/MDM auth
+                    # sub-steps) and ship only real logon records. Roughly halves
+                    # Identity volume; keeps every Grant/Deny.
+
+tenants:
+  - name: "trcs-hq"
+    cse_command_center: "https://net.banyanops.com"
+    cse_api_key: "REPLACE_WITH_CSE_API_KEY_SECRET"
+    blumira_url: "https://REPLACE.ingest.blumira.com/json"
+    blumira_token: "REPLACE_WITH_BLUMIRA_TOKEN"
+
+  # Add more clients by repeating the block.
+  # - name: "second-client"
+  #   cse_command_center: "https://net.banyanops.com"
+  #   cse_api_key: "..."
+  #   blumira_url: "https://....ingest.blumira.com/json"
+  #   blumira_token: "..."
