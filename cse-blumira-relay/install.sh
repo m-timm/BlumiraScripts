@@ -20,7 +20,7 @@
 set -euo pipefail
 
 # ---- configuration ---------------------------------------------------------
-REPO_RAW="${REPO_RAW:-https://raw.githubusercontent.com/m-timm/BlumiraScripts/main}"
+REPO_RAW="${REPO_RAW:-https://raw.githubusercontent.com/m-timm/BlumiraScripts/main/cse-blumira-relay}"
 BASE_DIR="${BASE_DIR:-$HOME/cse-blumira-relay}"
 IMAGE="cse-blumira-relay:latest"
 ENGINE_DIR="$BASE_DIR/_engine"
