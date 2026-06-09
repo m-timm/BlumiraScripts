@@ -8,7 +8,7 @@
 # the container runs as root so a 0600 config needs no ownership juggling.
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/m-timm/BlumiraScripts/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/m-timm/BlumiraScripts/main/cse-blumira-relay/install.sh | bash
 #   ./install.sh
 #
 # Flags / env:
